@@ -1,26 +1,280 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+
+/* Background */
+
+body{
+  background:#050505;
+  color:#e5e5e5;
+  font-family: Inter, sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+/* Cyber grid */
+
+.cyber-bg{
+
+  background-color:#050505;
+
+  background-image:
+  linear-gradient(rgba(0,255,170,.05) 1px, transparent 1px),
+  linear-gradient(90deg, rgba(0,255,170,.05) 1px, transparent 1px);
+
+  background-size:60px 60px;
+
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+
+/* Glass card */
+
+.card{
+
+  background:rgba(10,10,10,.6);
+
+  backdrop-filter:blur(12px);
+
+  border-radius:16px;
+
+  padding:28px;
+
+  transition:all .3s ease;
+
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+
+.card:hover{
+
+  transform:translateY(-6px);
+
+  box-shadow:
+  0 0 40px rgba(0,255,170,.2);
+
+}
+
+
+/* Section titles */
+
+.section-title{
+
+  font-size:36px;
+
+  font-weight:600;
+
+  color:#00ffa6;
+
+  margin-bottom:30px;
+
+}
+
+
+/* Skill pill */
+
+.skill-pill{
+
+  padding:8px 16px;
+
+  border-radius:999px;
+
+  background:rgba(0,255,170,.1);
+
+  font-size:14px;
+
+  transition:.2s;
+
+}
+
+.skill-pill:hover{
+
+  background:#00ffa6;
+  color:black;
+
+}
+
+
+/* Hero glow */
+
+.hero-name{
+
+  font-size:70px;
+
+  font-weight:700;
+
+  color:#00ffa6;
+
+  text-shadow:
+  0 0 30px rgba(0,255,170,.6);
+
+}
+
+
+/* project rail */
+
+.project-rail{
+
+  display:flex;
+
+  gap:20px;
+
+  overflow-x:auto;
+
+  padding-bottom:10px;
+
+}
+
+.project-card{
+
+  background:rgba(8,8,8,.6);
+
+  backdrop-filter:blur(10px);
+
+  border-radius:14px;
+
+  padding:22px;
+
+  transition:.3s ease;
+
+}
+
+.project-card:hover{
+
+  transform:translateY(-6px);
+
+  box-shadow:
+  0 0 30px rgba(0,255,170,.25);
+
+}
+
+.project-title{
+
+  font-size:20px;
+
+  font-weight:600;
+
+  color:#00ffa6;
+
+  margin-bottom:8px;
+
+}
+
+.project-link{
+
+  color:#38bdf8;
+
+  font-size:14px;
+
+  text-decoration:none;
+
+  transition:.2s;
+
+}
+
+.project-link:hover{
+
+  color:#00ffa6;
+
+}
+
+.tech-tag{
+
+  padding:4px 10px;
+
+  border-radius:999px;
+
+  background:rgba(0,255,170,.1);
+
+  font-size:12px;
+
+  color:#a3a3a3;
+
+}
+
+.project-meta{
+
+  font-size:13px;
+
+  color:#9ca3af;
+
+  margin-top:10px;
+
+}
+
+.terminal-card{
+
+background:rgba(8,8,8,.7);
+
+backdrop-filter:blur(10px);
+
+border-radius:12px;
+
+padding:20px;
+
+width:420px;
+
+box-shadow:
+0 0 30px rgba(0,255,170,.2);
+
+font-family:"JetBrains Mono", monospace;
+
+}
+
+.terminal-output{
+
+min-height:120px;
+
+color:#00ffa6;
+
+font-size:14px;
+
+margin-bottom:10px;
+
+}
+
+.terminal-input{
+
+display:flex;
+gap:6px;
+
+}
+
+.terminal-input input{
+
+background:transparent;
+
+outline:none;
+
+color:#00ffa6;
+
+flex:1;
+
+}
+
+.terminal-suggestions{
+
+display:flex;
+gap:6px;
+margin-top:6px;
+
+}
+
+.terminal-suggestions button{
+
+background:#0a0a0a;
+
+border-radius:6px;
+
+padding:2px 8px;
+
+font-size:12px;
+
+color:#00ffa6;
+
+}
+
+.terminal-suggestions button:hover{
+
+background:#00ffa6;
+color:black;
+
 }
