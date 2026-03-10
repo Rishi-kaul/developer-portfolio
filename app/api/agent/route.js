@@ -1,56 +1,89 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { knowledge } from "@/data/knowledge";
+import { searchLocalAI } from "@/lib/localBrain";
 
-export async function POST(req) {
+export async function POST(req){
 
-  try {
+try{
 
-    const { message } = await req.json();
+const { message } = await req.json();
 
-    console.log("User question:", message);
+console.log("User question:", message);
 
-    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+/* ---------- LOCAL AI FIRST ---------- */
 
-    const model = genAI.getGenerativeModel({
-      model: "gemini-1.5-flash"
-    });
+const localAnswer = searchLocalAI(message);
 
-    const prompt = `
-You are an AI recruiter assistant for Rishi Kaul, a cybersecurity professional.
+if(localAnswer){
 
-Answer questions about his skills, projects, experience, and startup idea.
+console.log("Local AI used");
 
-Be professional, concise, and focus on technical competencies.
+return Response.json({
+reply: localAnswer
+});
 
-Knowledge Base:
+}
+
+/* ---------- GEMINI AI ---------- */
+
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+
+const model = genAI.getGenerativeModel({
+model: "gemini-1.5-flash"
+});
+
+const prompt = `
+You are an AI recruiter assistant for Rishi Kaul.
+
+Answer questions about his:
+
+• cybersecurity skills
+• projects
+• experience
+• BUGOS startup
+
+Knowledge:
 ${knowledge}
 
 User Question:
 ${message}
-
-Provide a helpful, professional response.
 `;
 
-    console.log("Sending prompt to Gemini...");
+const result = await model.generateContent(prompt);
+const response = await result.response;
 
-    const result = await model.generateContent(prompt);
+const text = response.text();
 
-    const response = result.response;
-    const text = response.text();
+return Response.json({
+reply: text
+});
 
-    console.log("Gemini response received:", text.substring(0, 100));
+}
 
-    return Response.json({ reply: text });
+/* ---------- FALLBACK ---------- */
 
-  } catch (error) {
+catch(error){
 
-    console.error("Agent Error:", error.message);
-    console.error("Stack:", error.stack);
+console.error("AI error:", error);
 
-    return Response.json({ 
-      reply: "AI agent failed to respond. Please try again." 
-    }, { status: 500 });
+return Response.json({
+reply: `
+I am currently experiencing high demand on the AI server.
 
-  }
+However here is a quick summary:
+
+Rishi Kaul is a cybersecurity focused systems engineer with experience in:
+
+• blue team security
+• malware analysis
+• security monitoring
+• DevSecOps
+• infrastructure engineering
+
+You can explore his projects and startup BUGOS on this portfolio.
+`
+});
+
+}
 
 }

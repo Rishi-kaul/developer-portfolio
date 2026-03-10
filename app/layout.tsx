@@ -1,23 +1,35 @@
 import "./globals.css";
 import MatrixBackground from "@/components/MatrixBackground";
-import type { ReactNode } from "react";
+import Navbar from "@/components/Navbar";
+import { ReactNode } from "react";
 
 export const metadata = {
-  title: "Rishi Kaul | Systems Engineer",
-  description: "Cybersecurity, Systems, Software",
+  title: "Rishi Kaul | Cybersecurity Engineer",
+  description: "Cybersecurity, DevSecOps, Systems"
 };
 
-type RootLayoutProps = {
+export default function RootLayout({
+  children,
+}: {
   children: ReactNode;
-};
+}) {
 
-export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
+
       <body className="cyber-grid min-h-screen">
+
         <MatrixBackground />
-        {children}
+
+        <Navbar />
+
+        {/* THIS FIXES THE OVERLAP */}
+        <div className="pt-24">
+          {children}
+        </div>
+
       </body>
+
     </html>
   );
 }
