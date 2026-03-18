@@ -2,143 +2,128 @@
 
 import InvestorForm from "@/components/InvestorForm";
 import StartupDashboard from "@/components/StartupDashboard";
-import BugosArchitecture from "@/components/BugosArchitecture";/*
-import PrototypePreview from "@/components/PrototypePreview";*/
+import BugosArchitecture from "@/components/BugosArchitecture";
 import FundingCounter from "@/components/FundingCounter";
+
+const roadmapSteps = [
+  { label: "Prototype", icon: "🔬", status: "active",   desc: "Hardware v1 — 60% complete" },
+  { label: "Beta",      icon: "🧪", status: "upcoming", desc: "50 units to select technicians" },
+  { label: "Launch",   icon: "🚀", status: "upcoming", desc: "500-unit first batch" },
+  { label: "Scaling",  icon: "📈", status: "upcoming", desc: "Pan-India distribution" },
+];
+
+const keyMetrics = [
+  { value: "₹8,750 Cr",  label: "Market Size",       sub: "India Laptop Repair" },
+  { value: "5,00,000+",  label: "Target Users",       sub: "Technicians nationwide" },
+  { value: "500 Units",  label: "First Batch",        sub: "Production planned" },
+  { value: "v1 — 60%",  label: "Prototype Stage",    sub: "Hardware development" },
+];
+
 export default function Startup() {
-
   return (
+    <section id="startup" className="max-w-6xl mx-auto px-6 pb-24">
 
-    <section id="startup" className="max-w-7xl mx-auto px-6 py-24">
-
-      <h2 className="text-4xl md:text-5xl text-green-400 text-center mb-16 font-semibold">
-        BUGOS Startup
-      </h2>
-
-      <p className="text-center text-gray-400 max-w-3xl mx-auto mb-16">
-        Board Universal Gadget Operating System (BUGOS) is a non-invasive laptop
-        diagnostic system designed to detect motherboard faults without opening
-        the device.
-      </p>
-
-      {/* PRODUCT ARCHITECTURE */}
-
-      <div className="grid md:grid-cols-4 gap-6 mb-20">
-
-      
-        <BugosArchitecture/>
-
-      </div>
-
-
-      {/* ROADMAP */}
-
-      <div className="mb-20">
-
-        <h3 className="text-green-400 text-xl mb-8 text-center">
-          Startup Roadmap
-        </h3>
-
-        <div className="flex justify-between items-center roadmap">
-
-          <Step label="Prototype"/>
-          <Step label="Beta"/>
-          <Step label="Launch"/>
-          <Step label="Scaling"/>
-
-        </div>
-
-      </div>
-
-
-      {/* FUNDING */}
-
-      <div className="glass-card mb-20">
-
-        <h3 className="text-green-400 text-xl mb-3">
-          Seed Funding
-        </h3>
-
-        <p className="text-gray-400 mb-6">
-          Raising <span className="text-green-400 font-semibold">₹50 Lakhs</span> to build the first production batch.
+      {/* ── HERO ── */}
+      <div className="startup-hero-section">
+        <span className="startup-badge-pill">🚀 Startup</span>
+        <h1 className="startup-main-title">BUGOS</h1>
+        <p className="startup-tagline">Board Universal Gadget Operating System</p>
+        <p className="startup-hero-desc">
+          A non-invasive laptop diagnostic system designed to detect motherboard
+          faults without opening the device — empowering technicians with
+          AI-powered diagnostics.
         </p>
-
-        <div className="flex items-center gap-6 mb-8 flex-wrap">
-
-        <a
-          href="mailto:founder@bugos.tech"
-          className="btn-primary mr-2"
-      >
-          Become Investor
-      </a>
-
-      <a
-      href="https://github.com/Rishi-kaul/Laptop-Diagnostic-Pro"
-      target="_blank"
-      className="btn-secondary"
-    >
-      View GitHub
-    </a>
-
-    </div>
-
-        {/* PROGRESS BAR */}
-
-        <div>
-
-          <div className="flex justify-between text-gray-400 text-sm mb-2">
-            <FundingCounter/>
-            <span>Seed Round</span>
-            <span>₹0L / ₹50L</span>
-          </div>
-
-          <div className="progress-bar">
-
-            <div
-              className="progress-fill"
-              style={{ width: "0%" }}
-            />
-
-          </div>
-
+        <div className="startup-hero-cta">
+          <a href="mailto:founder@bugos.tech" className="btn-primary">
+            Become an Investor
+          </a>
+          <a
+            href="https://github.com/Rishi-kaul/Laptop-Diagnostic-Pro"
+            target="_blank"
+            className="btn-secondary"
+          >
+            View GitHub →
+          </a>
         </div>
-
       </div>
 
+      {/* ── KEY METRICS ── */}
+      <div className="startup-metrics-grid">
+        {keyMetrics.map((m, i) => (
+          <div key={i} className="startup-metric-card">
+            <div className="metric-value">{m.value}</div>
+            <div className="metric-label">{m.label}</div>
+            <div className="metric-sub">{m.sub}</div>
+          </div>
+        ))}
+      </div>
 
-      {/* DASHBOARD + INVESTOR FORM */}
+      {/* ── ARCHITECTURE ── */}
+      <SectionHeading title="Product Architecture" sub="How BUGOS works end-to-end" />
+      <BugosArchitecture />
 
-      <div className="grid md:grid-cols-2 gap-12">
-        
+      {/* ── ROADMAP ── */}
+      <SectionHeading title="Startup Roadmap" sub="Our journey from prototype to scale" />
+      <div className="startup-roadmap-grid">
+        {roadmapSteps.map((step, i) => (
+          <RoadmapCard key={i} step={step} />
+        ))}
+      </div>
 
-        <StartupDashboard/>
+      {/* ── FUNDING ── */}
+      <SectionHeading title="Seed Funding Round" sub="₹50L target to build the first production batch" />
+      <div className="glass-card startup-funding">
+        <div className="funding-top-row">
+          <FundingCounter />
+          <div className="funding-actions">
+            <a href="mailto:founder@bugos.tech" className="btn-primary">Invest Now</a>
+            <a
+              href="https://github.com/Rishi-kaul/Laptop-Diagnostic-Pro"
+              target="_blank"
+              className="btn-secondary"
+            >
+              View GitHub
+            </a>
+          </div>
+        </div>
+        <div>
+          <div className="funding-progress-labels">
+            <span className="text-sm text-gray-500">Seed Round</span>
+            <span className="text-sm font-semibold text-green-400">₹0L / ₹50L</span>
+          </div>
+          <div className="progress-bar">
+            <div className="progress-fill" style={{ width: "0%" }} />
+          </div>
+        </div>
+      </div>
 
-        <InvestorForm/>
-
+      {/* ── DASHBOARD + FORM ── */}
+      <div className="startup-bottom-grid">
+        <StartupDashboard />
+        <InvestorForm />
       </div>
 
     </section>
-
   );
 }
 
-
-function ArchCard({title}) {
-
+function SectionHeading({ title, sub }) {
   return (
-    <div className="arch-card">
-      {title}
+    <div className="startup-section-heading">
+      <h2 className="startup-section-title">{title}</h2>
+      {sub && <p className="startup-section-sub">{sub}</p>}
     </div>
-  )
-
+  );
 }
 
-function Step({label}) {
-
+function RoadmapCard({ step }) {
+  const active = step.status === "active";
   return (
-    <div className="roadmap-step">
-      {label}
+    <div className={`roadmap-card${active ? " roadmap-card-active" : ""}`}>
+      <div className="roadmap-card-icon">{step.icon}</div>
+      <div className="roadmap-card-label">{step.label}</div>
+      <div className="roadmap-card-desc">{step.desc}</div>
+      {active && <span className="roadmap-badge">Current</span>}
     </div>
-  )
-
+  );
 }

@@ -1,87 +1,97 @@
 export default function WhyHireMe() {
 
-  const items = [
-    {
+const items = [
 
-      title: "🎯Practical Security Experience",
-      text:
-        "Built malware analysis labs, file integrity monitoring systems, and detection engineering tools with real-world threat insights. 100+ GitHub stars across security projects."
-    },
-    {
-      title: " 📚 Continuous Learning",
-      text:
-        "Top 20% in NPTEL Cloud Computing (IIT Kharagpur). Multiple cybersecurity certifications and deep self-driven learning across networking, security engineering, and DevSecOps."
-    },
-    {
-      title: " 🏆 CTF & Security Competitions",
-      text:
-        "Top 100 in Anveshanam CTF (IIT Jammu & DRDO). Active CTFLearn competitor with strong problem-solving ability under pressure."
-    }
-  ];
+{
+icon: "🎯",
+title: "Practical Security Experience",
+text:
+"Built malware analysis labs, file integrity monitoring systems, and detection engineering tools with real-world threat insights. Security-focused projects with strong GitHub engagement."
+},
 
-  return (
+{
+icon: "📚",
+title: "Continuous Learning",
+text:
+"Top 20% in NPTEL Cloud Computing (IIT Kharagpur). Constantly improving skills across networking, cloud security, and DevSecOps practices."
+},
 
-    <section className="max-w-6xl mx-auto py-24 px-6">
+{
+icon: "🏆",
+title: "CTF & Security Competitions",
+text:
+"Top 100 in Anveshanam CTF (IIT Jammu & DRDO). Active competitor solving real security challenges under pressure."
+}
 
-      <h2 className="text-4xl md:text-5xl text-green-400 text-center mb-16 font-semibold">
-        Why Hire Me
-      </h2>
+];
 
-      <div className="grid md:grid-cols-3 gap-8">
+return (
 
-        {items.map((item, i) => (
+<section className="max-w-6xl mx-auto py-28 px-6">
 
-          <div
-            key={i}
-            className="
-            group
-            relative
-            bg-black/60
-            p-8
-            rounded-2xl
-            backdrop-blur-lg
-            shadow-lg
-            transition
-            duration-300
-            hover:-translate-y-2
-            hover:shadow-[0_0_40px_rgba(0,255,150,0.25)]
-            "
-          >
+{/* Title */}
 
-            <div className="text-4xl mb-4">
-              {item.icon}
-            </div>
+<h2 className="text-4xl md:text-5xl font-bold text-green-400 text-center mb-6">
+Why Hire Me
+</h2>
 
-            <h3 className="text-xl font-semibold text-green-300 mb-3">
-              {item.title}
-            </h3>
+<p className="text-gray-400 text-center max-w-2xl mx-auto mb-16">
+A cybersecurity engineer focused on defensive security, threat detection,
+and building resilient systems for modern infrastructure.
+</p>
 
-            <p className="text-gray-400 text-sm leading-relaxed">
-              {item.text}
-            </p>
 
-            {/* Glow overlay */}
+{/* Cards */}
 
-            <div
-              className="
-              absolute inset-0
-              rounded-2xl
-              opacity-0
-              group-hover:opacity-100
-              transition
-              pointer-events-none
-              bg-gradient-to-r
-              from-green-500/10
-              to-cyan-500/10
-              "
-            />
+<div className="grid md:grid-cols-3 gap-8">
 
-          </div>
+{items.map((item, i) => (
 
-        ))}
+<div
+key={i}
+className="
+group
+p-7
+rounded-xl
+bg-black/60
+border border-green-900/40
+backdrop-blur-md
+transition-all
+duration-300
+hover:-translate-y-1
+hover:border-green-400/40
+hover:shadow-[0_0_30px_rgba(0,255,170,0.15)]
+"
+>
 
-      </div>
+{/* icon */}
 
-    </section>
-  );
+<div className="text-3xl mb-4">
+{item.icon}
+</div>
+
+
+{/* title */}
+
+<h3 className="text-lg font-semibold text-green-300 mb-3">
+{item.title}
+</h3>
+
+
+{/* text */}
+
+<p className="text-gray-400 text-sm leading-relaxed">
+{item.text}
+</p>
+
+</div>
+
+))}
+
+</div>
+
+</section>
+
+);
+
 }

@@ -1,42 +1,28 @@
-export default function StartupDashboard(){
+const items = [
+  { icon: "🔬", label: "Hardware Prototype",   value: "v1 — 60% Complete",             trend: "↑" },
+  { icon: "📦", label: "Units Planned",        value: "First batch: 500",             trend: "→" },
+  { icon: "📊", label: "Market Size",          value: "₹8,750 Cr",                      trend: "↑" },
+  { icon: "👷", label: "Technicians Targeted", value: "500,000+",                     trend: "↑" },
+];
 
-  return(
-
+export default function StartupDashboard() {
+  return (
     <div className="glass-card">
-
-      <h3 className="text-green-400 text-xl mb-6">
-        Startup Dashboard
-      </h3>
-
-      <div className="space-y-4 text-gray-400">
-
-        <DashboardItem label="Hardware Prototype" value="v1 — 60% Complete"/>
-        <DashboardItem label="Units Planned" value="First batch: 500"/>
-        <DashboardItem label="Market Size" value="₹8,750Cr India Laptop Repair Market"/>
-        <DashboardItem label="Technicians Targeted" value="500,000+" />
-
+      <h3 className="dashboard-title">Startup Dashboard</h3>
+      <div className="dashboard-grid">
+        {items.map((item, i) => (
+          <div key={i} className="dashboard-item">
+            <div className="dashboard-item-icon">{item.icon}</div>
+            <div className="dashboard-item-content">
+              <div className="dashboard-item-label">{item.label}</div>
+              <div className="dashboard-item-value">
+                <span>{item.value}</span>
+                <span className="dashboard-trend">{item.trend}</span>
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
-
     </div>
-
-  )
-
-}
-
-function DashboardItem({label,value}){
-
-  return(
-
-    <div className="flex justify-between">
-
-      <span>{label}</span>
-
-      <span className="text-green-400">
-        {value}
-      </span>
-
-    </div>
-
-  )
-
+  );
 }
